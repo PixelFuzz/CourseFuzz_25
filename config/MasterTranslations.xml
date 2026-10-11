@@ -1255,6 +1255,14 @@
 			<Text language="de"><![CDATA[Reben überspringen sollte nur benutzt werden, wenn mit einem Gerät beide Reben (links und rechts) bearbeitet werden.]]></Text>
 			<Text language="en"><![CDATA[Skip vines should only be used, when the tool works on both vines (left and right).]]></Text>
 		</Translation>
+		<Translation name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_title">
+			<Text language="de"><![CDATA[Wenderadius an den Reben]]></Text>
+			<Text language="en"><![CDATA[Vine turn radius]]></Text>
+		</Translation>
+		<Translation name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_tooltip">
+			<Text language="de"><![CDATA[Wenderadius am Ende der Rebzeilen. 0 = automatisch. Ein kleinerer Wert macht die Wende kürzer und enger, aber nicht kleiner einstellen, als das Fahrzeug wirklich lenken kann (mindestens 2 m).]]></Text>
+			<Text language="en"><![CDATA[Turn radius at the end of the vine rows. 0 = automatic. A smaller value makes the turn shorter and tighter, but do not set it lower than your vehicle can really steer (minimum 2 m).]]></Text>
+		</Translation>
 	</Category>
 	<Category name="Global settings">	
 		<Translation name="CP_global_setting_title">

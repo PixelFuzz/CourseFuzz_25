@@ -369,6 +369,8 @@
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineMultiTools_tooltip" text="Wie viele Geräte auf diesem Kurs arbeiten. Mehr Informationen im Hilfemenü."/>
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineRowsToSkip_title" text="Reben überspringen"/>
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineRowsToSkip_tooltip" text="Reben überspringen sollte nur benutzt werden, wenn mit einem Gerät beide Reben (links und rechts) bearbeitet werden."/>
+    <text name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_title" text="Wenderadius an den Reben"/>
+    <text name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_tooltip" text="Wenderadius am Ende der Rebzeilen. 0 = automatisch. Ein kleinerer Wert macht die Wende kürzer und enger, aber nicht kleiner einstellen, als das Fahrzeug wirklich lenken kann (mindestens 2 m)."/>
     <!---->
     <!--Global settings-->
     <!---->

@@ -369,6 +369,8 @@
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineMultiTools_tooltip" text="How many Tools can work together. More Information in the help Menu."/>
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineRowsToSkip_title" text="Vines to skip"/>
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineRowsToSkip_tooltip" text="Skip vines should only be used, when the tool works on both vines (left and right)."/>
+    <text name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_title" text="Vine turn radius"/>
+    <text name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_tooltip" text="Turn radius at the end of the vine rows. 0 = automatic. A smaller value makes the turn shorter and tighter, but do not set it lower than your vehicle can really steer (minimum 2 m)."/>
     <!---->
     <!--Global settings-->
     <!---->

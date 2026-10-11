@@ -1046,8 +1046,17 @@ function VineTurn:init(vehicle, driveStrategy, ppc, proximityController, turnCon
 end
 
 function VineTurn:startTurn()
+    --- PATCH: the user can set an own turn radius for the vine turns (0 = automatic). A smaller radius
+    --- makes the turn at the end of the row shorter and tighter.
+    local turningRadius = self.turningRadius
+    local vineSettings = self.vehicle.getCpVineSettings and self.vehicle:getCpVineSettings()
+    local customRadius = vineSettings and vineSettings.vineTurnRadius and vineSettings.vineTurnRadius:getValue()
+    if customRadius and customRadius >= 2 then
+        self:debug('Using the custom vine turn radius %.1f m instead of %.1f m', customRadius, turningRadius)
+        turningRadius = customRadius
+    end
     local turnManeuver = VineTurnManeuver(self.vehicle, self.turnContext, self.vehicle:getAIDirectionNode(),
-            self.turningRadius, self.workWidth)
+            turningRadius, self.workWidth)
     self.turnCourse = turnManeuver:getCourse()
     self.ppc:setCourse(self.turnCourse)
     self.ppc:initialize(1)

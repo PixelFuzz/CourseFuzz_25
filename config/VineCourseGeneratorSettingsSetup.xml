@@ -23,5 +23,7 @@
         <!--se to max 1 due to unexpected complication with the new generator-->
         <!--Setting classType="AIParameterSettingList" name="vineMultiTools" min="1" max="1" default="1"/-->
         <Setting classType="AIParameterSettingList" name="vineRowsToSkip" min="0" max="4" default="0"/>
+        <!-- PATCH: own turn radius for the turns at the end of the vine rows, 0 = automatic -->
+        <Setting classType="AIParameterSettingList" name="vineTurnRadius" min="0" max="10" incremental="0.5" default="0" unit="2"/>
     </SettingSubTitle>
 </Settings>
