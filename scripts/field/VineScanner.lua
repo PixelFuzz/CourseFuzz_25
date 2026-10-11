@@ -9,6 +9,12 @@ function VineScanner:init(maxStartDistance)
 	self.debugChannel = CpDebug.DBG_COURSES
 end
 
+--- PATCH(stale nodes): vineSystem.nodes can keep entries of nodes that were already deleted
+--- (e.g. groves removed/rebuilt by other mods). getWorldTranslation() on such a node raises a script error.
+local function isNodeAlive(node)
+	return entityExists == nil or entityExists(node)
+end
+
 function VineScanner:setup()
 	self.vineSystem = g_currentMission.vineSystem
 end
@@ -23,10 +29,12 @@ function VineScanner:hasVineNodesCloseBy(tx, tz)
 	local closestDist, dist = math.huge, 0
 	--- Finds the closest vine node on a field to the start point.
 	for node, _ in pairs(self.vineSystem.nodes) do 
-		x, _, z = getWorldTranslation(node)
-		dist = MathUtil.vector2Length(x-tx, z-tz)
-		if dist < closestDist then 
-			closestDist = dist
+		if isNodeAlive(node) then
+			x, _, z = getWorldTranslation(node)
+			dist = MathUtil.vector2Length(x-tx, z-tz)
+			if dist < closestDist then 
+				closestDist = dist
+			end
 		end
 	end
 	return closestDist <= self.maxStartDistance
@@ -59,8 +67,11 @@ function VineScanner:getVineNodesOnField(vertices, tx, tz, isCustomField)
 	local segment, closestNode, closestPlaceable
 	--- Finds the closest vine node on a field to the start point.
 	for node, placeable in pairs(self.vineSystem.nodes) do 
-		x, _, z = getWorldTranslation(node)
-		if CpMathUtil.isPointInPolygon(vertices, x, z) then 
+		x, z = nil, nil
+		if isNodeAlive(node) then
+			x, _, z = getWorldTranslation(node)
+		end
+		if x ~= nil and z ~= nil and CpMathUtil.isPointInPolygon(vertices, x, z) then 
 			segment = self:getVineSegmentIxForNode(node, placeable.spec_vine.vineSegments)
 			table.insert(vineSegments, segment)
 			dist = MathUtil.vector2Length(x-tx, z-tz)
@@ -108,7 +119,7 @@ function VineScanner:findVineNodesInField(vertices, tx, tz, isCustomField)
 		end
 	end
 	--- Separate the segments into lines.
-	local left, right = self:separateIntoColumns(segments, closestNode)
+	local left, right = self:separateIntoColumns(segments, closestNode, dirX, dirZ)
 
 	local lines = {}
 	--- Combine the found lines to the left and right into one table.
@@ -187,7 +198,20 @@ end
 ---@param closestNode node
 ---@return table left lines 
 ---@return table right lines
-function VineScanner:separateIntoColumns(lines, closestNode)
+--- PATCH(split rows): a row can consist of several end-to-end segments (Auto Grove splits rows into pieces of
+--- max. 48 m). The original test only matched segments crossing a single point of the column, so only ONE piece of
+--- each row was found and the field was seen as a block. Here a segment belongs to the column if it is collinear
+--- with it, wherever it is along the row.
+local function isOnColumn(x, z, dirX, dirZ, line)
+	if dirX == nil or dirZ == nil then
+		return MathUtil.getCircleLineIntersection(x, z, 0.1, line.x1, line.z1, line.x2, line.z2)
+	end
+	local d1 = math.abs((line.x1 - x) * dirZ - (line.z1 - z) * dirX)
+	local d2 = math.abs((line.x2 - x) * dirZ - (line.z2 - z) * dirX)
+	return d1 <= 0.1 and d2 <= 0.1
+end
+
+function VineScanner:separateIntoColumns(lines, closestNode, dirX, dirZ)
 	local placeable = self.vineSystem.nodes[closestNode]
 	local width = placeable.spec_vine.width
 	local columnsLeft = {}
@@ -200,7 +224,7 @@ function VineScanner:separateIntoColumns(lines, closestNode)
 		local x, _, z = localToWorld(closestNode, nx, 0, 0) 
 		local foundVine = false
 		for i, line in pairs(lines) do 
-			if MathUtil.getCircleLineIntersection(x, z, 0.1,  line.x1, line.z1, line.x2, line.z2) then
+			if isOnColumn(x, z, dirX, dirZ, line) then
 				if columnsLeft[ix] == nil then 
 					columnsLeft[ix] = {}
 				end
@@ -222,7 +246,7 @@ function VineScanner:separateIntoColumns(lines, closestNode)
 		local x, _, z = localToWorld(closestNode, nx, 0, 0) 	
 		local foundVine = false
 		for i, line in pairs(lines) do 
-			if MathUtil.getCircleLineIntersection(x, z, 0.1,  line.x1, line.z1, line.x2, line.z2) then
+			if isOnColumn(x, z, dirX, dirZ, line) then
 				if columnsRight[ix] == nil then 
 					columnsRight[ix] = {}
 				end
@@ -268,12 +292,12 @@ function VineScanner:getStartEndPointForLine(segments)
 		table.insert(points, {x = xb, z = zb})
 	end
 	if #points > 0 then 
+		--- PATCH: sort along the direction of the row (not by x first, which is unstable for rows running north-south).
+		local rdx, rdz = points[2].x - points[1].x, points[2].z - points[1].z
+		local len = math.sqrt(rdx * rdx + rdz * rdz)
+		if len > 0 then rdx, rdz = rdx / len, rdz / len else rdx, rdz = 1, 0 end
 		table.sort(points, function (a, b)
-			if a.x ~= b.x then 
-				return a.x < b.x
-			else 
-				return a.z < b.z
-			end
+			return a.x * rdx + a.z * rdz < b.x * rdx + b.z * rdz
 		end)
 		return {x1 = points[1].x, 
 				x2 = points[#points].x, 
