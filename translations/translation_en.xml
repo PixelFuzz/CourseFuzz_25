@@ -187,6 +187,8 @@
     <text name="CP_vehicle_setting_allowPathfinderTurns_tooltip" text="Enables using the pathfinder in turns, for example to avoid obstacles and fruit."/>
     <text name="CP_vehicle_setting_loopTurnsOnHeadland_title" text="Loop turn on headland"/>
     <text name="CP_vehicle_setting_loopTurnsOnHeadland_tooltip" text="Instead of performing a normal turn on headland, the vehicle will drive a loop. The first headland should have round corners!"/>
+    <text name="CP_vehicle_setting_customTurnRadius_title" text="Turn radius"/>
+    <text name="CP_vehicle_setting_customTurnRadius_tooltip" text="Own turn radius for this vehicle. 0 = automatic. A smaller value makes turns tighter and shorter (for example at the end of vine rows). Do not set it lower than the vehicle can really steer (minimum 2 m). Takes effect at the next turn, no need to generate the course again."/>
     <text name="CP_vehicle_setting_foldImplementAtEnd_title" text="Fold tools at course end"/>
     <text name="CP_vehicle_setting_foldImplementAtEnd_tooltip" text="Enables/disables automatic folding of implements at the end of the course."/>
     <text name="CP_vehicle_setting_returnToStart_title" text="Return to starting point"/>
@@ -369,8 +371,6 @@
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineMultiTools_tooltip" text="How many Tools can work together. More Information in the help Menu."/>
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineRowsToSkip_title" text="Vines to skip"/>
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineRowsToSkip_tooltip" text="Skip vines should only be used, when the tool works on both vines (left and right)."/>
-    <text name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_title" text="Vine turn radius"/>
-    <text name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_tooltip" text="Turn radius at the end of the vine rows. 0 = automatic. A smaller value makes the turn shorter and tighter, but do not set it lower than your vehicle can really steer (minimum 2 m)."/>
     <!---->
     <!--Global settings-->
     <!---->

@@ -40,6 +40,8 @@
 		<Setting classType="AIParameterBooleanSetting" name="allowPathfinderTurns" defaultBool="false" isExpertModeOnly="true" isVisible="areCourseSettingsVisible"/>
 		<!--Loop turns on headland-->
 		<Setting classType="AIParameterBooleanSetting" name="loopTurnsOnHeadland" defaultBool="false" isExpertModeOnly="true" isVisible="areCourseSettingsVisible"/>
+		<!--PATCH: own turn radius, 0 = automatic-->
+		<Setting classType="AIParameterSettingList" name="customTurnRadius" min="0" max="12" incremental="0.5" default="0" unit="2"/>
 	</SettingSubTitle>
 
 	<SettingSubTitle title="implement">

@@ -187,6 +187,8 @@
     <text name="CP_vehicle_setting_allowPathfinderTurns_tooltip" text="Aktiviert den Pathfinder für Wendemanöver, zum Beispiel um Objekten oder der Frucht auszuweichen."/>
     <text name="CP_vehicle_setting_loopTurnsOnHeadland_title" text="Wendeschleife im Vorgewende"/>
     <text name="CP_vehicle_setting_loopTurnsOnHeadland_tooltip" text="Anstatt eines normalen Wendemanövers im Vorgewende, wird eine Schleife gefahren. Das erste Vorgewende sollte runde Ecken haben!"/>
+    <text name="CP_vehicle_setting_customTurnRadius_title" text="Wenderadius"/>
+    <text name="CP_vehicle_setting_customTurnRadius_tooltip" text="Eigener Wenderadius für dieses Fahrzeug. 0 = automatisch. Ein kleinerer Wert macht Wenden enger und kürzer (zum Beispiel am Ende von Rebzeilen). Nicht kleiner einstellen, als das Fahrzeug wirklich lenken kann (mindestens 2 m). Wirkt ab der nächsten Wende, der Kurs muss nicht neu erzeugt werden."/>
     <text name="CP_vehicle_setting_foldImplementAtEnd_title" text="Geräte am Ende einklappen"/>
     <text name="CP_vehicle_setting_foldImplementAtEnd_tooltip" text="Geräte am Ende des Kurses einklappen oder nicht."/>
     <text name="CP_vehicle_setting_returnToStart_title" text="Zum Startpunkt zurückfahren"/>
@@ -369,8 +371,6 @@
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineMultiTools_tooltip" text="Wie viele Geräte auf diesem Kurs arbeiten. Mehr Informationen im Hilfemenü."/>
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineRowsToSkip_title" text="Reben überspringen"/>
     <text name="CP_vehicle_vineCourseGeneratorSetting_vineRowsToSkip_tooltip" text="Reben überspringen sollte nur benutzt werden, wenn mit einem Gerät beide Reben (links und rechts) bearbeitet werden."/>
-    <text name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_title" text="Wenderadius an den Reben"/>
-    <text name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_tooltip" text="Wenderadius am Ende der Rebzeilen. 0 = automatisch. Ein kleinerer Wert macht die Wende kürzer und enger, aber nicht kleiner einstellen, als das Fahrzeug wirklich lenken kann (mindestens 2 m)."/>
     <!---->
     <!--Global settings-->
     <!---->

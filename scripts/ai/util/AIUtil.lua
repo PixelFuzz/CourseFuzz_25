@@ -243,6 +243,15 @@ function AIUtil.getTurningRadius(vehicle, logEnabled)
 	
 	CpUtil.debugVehicleIf(logEnabled, CpDebug.DBG_IMPLEMENTS, vehicle, 'Finding turn radius:')
 
+	--- PATCH: the user can set an own turn radius in the vehicle settings (0 = automatic). It is used everywhere
+	--- the turning radius is needed (turns, course generation, pathfinding).
+	local cpSettings = vehicle.getCpSettings and vehicle:getCpSettings()
+	local customRadius = cpSettings and cpSettings.customTurnRadius and cpSettings.customTurnRadius:getValue()
+	if customRadius and customRadius >= 2 then
+		CpUtil.debugVehicleIf(logEnabled, CpDebug.DBG_IMPLEMENTS, vehicle, '  custom turn radius from the vehicle settings: %.1f', customRadius)
+		return customRadius
+	end
+
 	local radius = vehicle.maxTurningRadius or 6
 	CpUtil.debugVehicleIf(logEnabled, CpDebug.DBG_IMPLEMENTS, vehicle, '  turnRadius set to %.1f', radius)
 

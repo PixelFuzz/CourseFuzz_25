@@ -587,6 +587,14 @@
 			<Text language="de"><![CDATA[Anstatt eines normalen Wendemanövers im Vorgewende, wird eine Schleife gefahren. Das erste Vorgewende sollte runde Ecken haben!]]></Text>
 			<Text language="en"><![CDATA[Instead of performing a normal turn on headland, the vehicle will drive a loop. The first headland should have round corners!]]></Text>
 		</Translation>
+		<Translation name="CP_vehicle_setting_customTurnRadius_title">
+			<Text language="de"><![CDATA[Wenderadius]]></Text>
+			<Text language="en"><![CDATA[Turn radius]]></Text>
+		</Translation>
+		<Translation name="CP_vehicle_setting_customTurnRadius_tooltip">
+			<Text language="de"><![CDATA[Eigener Wenderadius für dieses Fahrzeug. 0 = automatisch. Ein kleinerer Wert macht Wenden enger und kürzer (zum Beispiel am Ende von Rebzeilen). Nicht kleiner einstellen, als das Fahrzeug wirklich lenken kann (mindestens 2 m). Wirkt ab der nächsten Wende, der Kurs muss nicht neu erzeugt werden.]]></Text>
+			<Text language="en"><![CDATA[Own turn radius for this vehicle. 0 = automatic. A smaller value makes turns tighter and shorter (for example at the end of vine rows). Do not set it lower than the vehicle can really steer (minimum 2 m). Takes effect at the next turn, no need to generate the course again.]]></Text>
+		</Translation>
 		<Translation name="CP_vehicle_setting_foldImplementAtEnd_title">
 			<Text language="de"><![CDATA[Geräte am Ende einklappen]]></Text>
 			<Text language="en"><![CDATA[Fold tools at course end]]></Text>
@@ -1254,14 +1262,6 @@
 		<Translation name="CP_vehicle_vineCourseGeneratorSetting_vineRowsToSkip_tooltip">
 			<Text language="de"><![CDATA[Reben überspringen sollte nur benutzt werden, wenn mit einem Gerät beide Reben (links und rechts) bearbeitet werden.]]></Text>
 			<Text language="en"><![CDATA[Skip vines should only be used, when the tool works on both vines (left and right).]]></Text>
-		</Translation>
-		<Translation name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_title">
-			<Text language="de"><![CDATA[Wenderadius an den Reben]]></Text>
-			<Text language="en"><![CDATA[Vine turn radius]]></Text>
-		</Translation>
-		<Translation name="CP_vehicle_vineCourseGeneratorSetting_vineTurnRadius_tooltip">
-			<Text language="de"><![CDATA[Wenderadius am Ende der Rebzeilen. 0 = automatisch. Ein kleinerer Wert macht die Wende kürzer und enger, aber nicht kleiner einstellen, als das Fahrzeug wirklich lenken kann (mindestens 2 m).]]></Text>
-			<Text language="en"><![CDATA[Turn radius at the end of the vine rows. 0 = automatic. A smaller value makes the turn shorter and tighter, but do not set it lower than your vehicle can really steer (minimum 2 m).]]></Text>
 		</Translation>
 	</Category>
 	<Category name="Global settings">	
